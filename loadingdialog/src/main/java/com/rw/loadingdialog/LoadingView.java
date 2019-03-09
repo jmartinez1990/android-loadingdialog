@@ -1,5 +1,6 @@
 package com.rw.loadingdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -282,6 +283,7 @@ public class LoadingView
      * @param right right margin dimension
      * @param bottom bottom margin dimension
      */
+    @SuppressLint("ResourceType")
     public void setCustomMarginDimensions(@DimenRes int left, @DimenRes int top, @DimenRes int right, @DimenRes int bottom)
     {
         Resources resources = mContext.getResources();

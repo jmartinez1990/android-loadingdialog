@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
@@ -19,6 +21,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -30,3 +36,137 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
+
+//ext {
+//    bintrayRepo = 'loading-dialog'
+//    bintrayName = 'loading-dialog'
+//
+//    publishedGroupId = 'com.juanmartinez'
+//    libraryName = 'loading-dialog'
+//    artifact = 'loading-dialog'
+//
+//    libraryDescription = 'Android Loading Dialog library fork'
+//
+//    siteUrl = 'https://github.com/jmartinez1990/android-loadingdialog'
+//    gitUrl = 'https://github.com/jmartinez1990/android-loadingdialog.git'
+//
+//    libraryVersion = '1.0.4'
+//
+//    developerId = 'juanmartinez'
+//    developerName = 'Juan Martinez'
+//    developerEmail = 'juan.martinez@patagonian.it'
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
+//}
+//
+//group = publishedGroupId
+//version = libraryVersion
+//
+//install {
+//    repositories.mavenInstaller {
+//        pom.project {
+//            packaging 'aar'
+//            groupId publishedGroupId
+//            artifactId artifact
+//
+//            name libraryName
+//            description libraryDescription
+//            url siteUrl
+//
+//            licenses {
+//                license {
+//                    name licenseName
+//                    url licenseUrl
+//                }
+//            }
+//            developers {
+//                developer {
+//                    id developerId
+//                    name developerName
+//                    email developerEmail
+//                }
+//            }
+//            scm {
+//                connection gitUrl
+//                developerConnection gitUrl
+//                url siteUrl
+//            }
+//        }
+//    }
+//}
+//
+//task sourcesJar(type: Jar) {
+//    classifier = 'sources'
+//    from android.sourceSets.main.java.srcDirs
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+//
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//
+//    configurations = ['archives']
+//    pkg {
+//        repo = bintrayRepo
+//        name = bintrayName
+//        desc = libraryDescription
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = allLicenses
+//        dryRun = false
+//        publish = true
+//        override = false
+//        publicDownloadNumbers = true
+//        version {
+//            desc = libraryDescription
+//        }
+//    }
+//}
+
+ext {
+    bintrayRepo = 'maven' //the maven repo name (created on bintray)
+    bintrayName = 'loading-dialog' //the name you want to give at your project on bintray
+    orgName = 'juanmartinez' //your user name
+
+    publishedGroupId = 'com.juanmartinez' //aaaa : the librairy group
+    artifact = 'loading-dialog' //BBBB : the library name
+    libraryVersion = "1.0.4" //the librairy version
+
+    //the library will be : aaaa:BBBB:version
+
+    libraryName = 'loading-dialog'
+    libraryDescription = 'Loading Dialog for Android'
+
+    siteUrl = 'https://github.com/jmartinez1990/android-loadingdialog'
+    gitUrl = 'https://github.com/jmartinez1990/android-loadingdialog.git'
+
+    developerId = 'juanmartinez'
+    developerName = 'Juan Martinez'
+    developerEmail = 'juan.martinez@patagonian.it'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: rootProject.file('gradle/install-v1.gradle')
+apply from: rootProject.file('gradle/bintray-android-v1.gradle')
