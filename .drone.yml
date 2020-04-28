@@ -3,6 +3,6 @@ type: docker
 name: compile
 steps:
   - name: compile
-    image: nextcloudci/android:android-44
+    image: opengamer/android-sdk-gradle-fastlane
     commands:
-      - ./gradlew assemble
+      - ./gradlew assembleDebug
